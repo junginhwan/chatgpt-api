@@ -18,8 +18,8 @@ class ChatGptRequest extends FormRequest
     {
         return [
             'chat' => ['required'],
-            'chat.*.message' => ['required'],
-            'chat.*.rule' => Rule::in(['assistant', 'user', 'system']),
+            'chat.*.content' => ['required'],
+            'chat.*.role' => Rule::in(['assistant', 'user', 'system']),
         ];
     }
 

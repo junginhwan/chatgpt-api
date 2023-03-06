@@ -17,6 +17,8 @@ class ChatGptController extends Controller
 
     public function __invoke(ChatGptRequest $request)
     {
-        $this->service->chat($request->all());
+        return response()->json([
+            'result' => $this->service->chat($request->input('chat')),
+        ]);
     }
 }
