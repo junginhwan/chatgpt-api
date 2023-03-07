@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class ChatGptTest extends TestCase
 {
-    public function test_post_api_chatgpt의_에러_응답을_확인()
+    public function post_api_chatgpt의_에러_응답을_확인()
     {
         $response = $this->postJson('/api/chatgpt', ['chat' => '']);
         $error_response = [
@@ -27,10 +27,10 @@ class ChatGptTest extends TestCase
         $response = $this->postJson('/api/chatgpt', [
             'chat' => [
                 [
-                    'content' => 'php에 대해서 알려줘'
+                    'content' => 'php에 대해서 알려줘',
                 ],
                 [
-                    'content' => 'java에 대해서 알려줘',
+                    'content' => '더 자세히 알려줘',
                 ]
             ]
         ]);
