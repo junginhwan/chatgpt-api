@@ -4,7 +4,6 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ChatGptRequest extends FormRequest
@@ -17,9 +16,7 @@ class ChatGptRequest extends FormRequest
     public function rules()
     {
         return [
-            'chat' => ['required'],
-            'chat.*.content' => ['required'],
-            'chat.*.role' => Rule::in(['assistant', 'user', 'system']),
+            'chat' => ['required', 'json'],
         ];
     }
 
