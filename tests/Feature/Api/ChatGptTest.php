@@ -31,14 +31,14 @@ class ChatGptTest extends TestCase
     public function post_api_chatgpt의_응답을_확인()
     {
         $response = $this->postJson('/api/chatgpt', [
-            'chat' => json_encode([
+            'chat' => [
                 [
                     'content' => 'php에 대해서 알려줘',
                 ],
                 [
                     'content' => '더 자세히 알려줘',
                 ]
-            ])
+            ]
         ]);
         $response->assertStatus(200);
     }
@@ -49,13 +49,21 @@ class ChatGptTest extends TestCase
     public function post_api_chatgpt에서_role을_임의값으로_전송시_에러확인()
     {
         $response = $this->postJson('/api/chatgpt', [
-            'chat' => json_encode([
+            'chat' => [
                 [
                     'content' => 'php에 대해서 알려줘',
                     'role' => 'test'
                 ]
-            ])
+            ]
         ]);
-        $response->assertJson(['message' => 'role을 확인해 주세요.']);
+        $error_response = [
+            'errors' => [
+                'chat.0.role' => [
+                    'validation.in',
+                ],
+            ],
+            'status' => true
+        ];
+        $response->assertExactJson($error_response);
     }
 }
