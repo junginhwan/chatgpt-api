@@ -18,11 +18,11 @@ Class ChatGptService
         $this->model = env('CHAT_GPT_MODEL');
     }
 
-    public function chat(Array $param)
+    public function chat(Array $chats)
     {
         return $this->open_ai->chat([
             'model' => $this->model,
-            'messages' => $this->messages($param),
+            'messages' => $this->messages($chats),
             'temperature' => 1.0,
             'max_tokens' => 4000,
             'frequency_penalty' => 0,
